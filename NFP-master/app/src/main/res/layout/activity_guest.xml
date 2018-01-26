@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="edu.wwu.helesa.nfp.GuestActivity"
+    android:id="@+id/activity_guest"
+    android:background="@color/colorBackground"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <FrameLayout
+        android:id="@+id/track_list_dimmer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:elevation="10dip"
+        android:background="@color/colorDimmer"
+        android:layout_above="@+id/nfc_message_container"
+        android:visibility="gone" />
+
+    <ListView
+        android:id="@+id/track_list"
+        style="@style/ListViewStyle"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/nfc_message_container"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true" />
+
+    <RelativeLayout
+        android:id="@+id/nfc_message_container"
+        android:background="@color/colorWarningBackground"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/selected_track_area"
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/nfc_message"
+            android:textAppearance="@style/NfcMessageText"
+            android:text="@string/nfc_message_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:textAlignment="center"
+            android:padding="5dip" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/selected_track_area"
+        android:background="@color/colorPrimary"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true">
+
+        <RelativeLayout
+            android:id="@+id/selected_track_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="invisible">
+
+            <ImageView
+                android:id="@+id/item_album_cover"
+                app:srcCompat="@drawable/album_art_placeholder"
+                android:contentDescription="@string/album_cover_content_description"
+                android:layout_width="64dip"
+                android:layout_height="64dip"
+                android:layout_margin="10dip" />
+
+            <RelativeLayout
+                android:id="@+id/item_info_container"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toEndOf="@+id/item_album_cover"
+                android:layout_toStartOf="@+id/track_area_action"
+                android:layout_centerInParent="true"
+                android:layout_marginEnd="10dip">
+
+                <TextView
+                    android:id="@+id/item_track_title"
+                    android:textAppearance="@style/TrackTitleTextNormal"
+                    android:text="@string/track_name_placeholder"
+                    android:singleLine="true"
+                    android:scrollHorizontally="true"
+                    android:ellipsize="end"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:id="@+id/item_artist_album"
+                    android:textAppearance="@style/TrackArtistAlbumTextNormal"
+                    android:text="@string/artist_album_placeholder"
+                    android:singleLine="true"
+                    android:scrollHorizontally="true"
+                    android:ellipsize="end"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/item_track_title" />
+
+            </RelativeLayout>
+
+            <Button
+                android:id="@+id/track_area_action"
+                android:backgroundTint="@color/colorSelectedBackground"
+                android:textAppearance="@style/ButtonSelectedText"
+                android:text="@string/send_button_text"
+                android:onClick="prepareNfcAdapter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="10dip" />
+
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/select_track_message"
+            android:textAppearance="@style/MutedMessageText"
+            android:text="@string/select_track_message"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:visibility="visible" />
+
+    </RelativeLayout>
+
+</RelativeLayout>
